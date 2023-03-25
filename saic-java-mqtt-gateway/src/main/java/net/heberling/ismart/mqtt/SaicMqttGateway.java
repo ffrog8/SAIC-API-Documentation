@@ -199,7 +199,7 @@ public class SaicMqttGateway implements Callable<Integer> {
           new MessageCoder<>(MP_UserLoggingInReq.class);
 
       MP_UserLoggingInReq applicationData = new MP_UserLoggingInReq();
-      applicationData.setPassword(saicPassword);
+      applicationData.setPassword(saicPassword.replaceAll("[^a-zA-Z0-9]", ""));
       Message<MP_UserLoggingInReq> loginRequestMessage =
           loginRequestMessageCoder.initializeMessage(
               "0000000000000000000000000000000000000000000000000#".substring(saicUser.length())
